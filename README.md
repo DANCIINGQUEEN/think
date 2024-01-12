@@ -1,2 +1,2 @@
-# think
+# Think
 Whatever comes to mind
