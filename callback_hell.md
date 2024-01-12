@@ -30,7 +30,7 @@ fs.readFile('file1.txt', 'utf8', (err, data1) => {
 ```
 
 ```javascript
-  const fs = require('fs').promises;
+const fs = require('fs').promises;
 
 // Promise를 사용하여 파일을 순차적으로 읽는 예시
 const readFile = (fileName) => {
@@ -56,7 +56,7 @@ readFile('file1.txt')
 ```
 
 ```javascript
-  const fs = require('fs').promises;
+const fs = require('fs').promises;
 
 // async 함수를 사용하여 파일을 순차적으로 읽는 예시
 const readFileAsync = async () => {
