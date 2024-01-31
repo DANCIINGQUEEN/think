@@ -7,11 +7,13 @@ class Graph {
 
   addVertex(vertex) {
     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];  // 새 정점 추가
+    return this;
   }
 
   addEdge(vertex1, vertex2) {
     this.adjacencyList[vertex1].push(vertex2);  // 첫 번째 정점에 두 번째 정점을 인접 정점으로 추가
     this.adjacencyList[vertex2].push(vertex1);  // 두 번째 정점에 첫 번째 정점을 인접 정점으로 추가
+    return this;
   }
 
   bfs(start) {
@@ -38,15 +40,7 @@ class Graph {
 
 // 그래프 생성 및 초기화 예제
 const graph = new Graph();
-graph.addVertex("A");
-graph.addVertex("B");
-graph.addVertex("C");
-graph.addVertex("D");
-graph.addEdge("A", "B");
-graph.addEdge("A", "C");
-graph.addEdge("B", "D");
-graph.addEdge("C", "D");
-
+graph.addVertex("A").addVertex("B").addVertex("C").addVertex("D").addEdge("A", "B").addEdge("A", "C").addEdge("B", "D").addEdge("C", "D");
 // BFS 실행 및 결과 출력
 console.log("BFS:", graph.bfs("A"));
 ```
