@@ -39,8 +39,16 @@ class Graph {
 }
 
 // 그래프 생성 및 초기화 예제
-const graph = new Graph();
-graph.addVertex("A").addVertex("B").addVertex("C").addVertex("D").addEdge("A", "B").addEdge("A", "C").addEdge("B", "D").addEdge("C", "D");
+const graph = new Graph()
+  .addVertex("A")
+  .addVertex("B")
+  .addVertex("C")
+  .addVertex("D")
+  .addEdge("A", "B")
+  .addEdge("A", "C")
+  .addEdge("B", "D")
+  .addEdge("C", "D");
+
 // BFS 실행 및 결과 출력
 console.log("BFS:", graph.bfs("A"));
 ```
