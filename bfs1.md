@@ -45,12 +45,4 @@ graph.addVertex("A").addVertex("B").addVertex("C").addVertex("D").addEdge("A", "
 console.log("BFS:", graph.bfs("A"));
 ```
 
-이 코드는 그래프를 표현하고, BFS 알고리즘을 사용하여 그래프를 탐색하는 방법을 보여줍니다. 각 메소드와 구문에 주석을 달아 이해를 돕고 있습니다.
 
-**후속 질문**:
-
-**Q1:** 이 코드에서 `addVertex`와 `addEdge` 메소드의 목적은 무엇인가요?
-
-**Q2:** 큐 대신 다른 자료 구조를 사용하면 어떤 결과가 발생할 수 있나요?
-
-**Q3:** 이 BFS 구현에서 무방향 그래프를 사용한 이유는 무엇인가요?
