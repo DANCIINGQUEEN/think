@@ -61,3 +61,24 @@ outer()
   - 현재 컨텍스트에서 선언된 식별자(변수, 함수 선언 등)를 저장
 2.  Outer Lexical Environment Reference
   - 외부 스코프에 대한 참조로, 현재 컨텍스트의 외부 스코프에 접근할 수 있게됨
+
+
+
+### 예시 코드
+```js
+function outerFunction() {
+ let ounterVarialble = 'I am outside'  //outerFunction의 지역 변수
+ function innerFunction() {
+    //innerFunction에서는 outerFunction의 지역 변수에 접근할 수 있음
+    console.log(outerVariable)
+  }
+  return innerFunction
+}
+const myInnerFunction = outerFunction()  //outerFunction을 호출하고,  innerFunction을 반환
+myInnerFunction()  //'I am outside' 출력
+```
+- 위 코드에서 outerFunction은 innerFunction을 내부에 정의
+- innerFunction은 outerFunction의 지역 변수 ounterVariable에 접근할 수 있음
+- innerFunction이 선언될 때의 렉시컬 환경에 outerVariable이 포함되어 있기 때문
+- outerFunction이 실행되어 종료된 후에도 myInnerFunction을 통해 innerFunction을 호출하면 outerVariable에 접근할 수 있음
+- 이는 innerFunction이 자신이 생성될 때의 렉시컬 환경을 '기억'하고 있기 때문
