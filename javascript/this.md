@@ -22,10 +22,24 @@
   show.call(obj)    // {method: ƒ}
   ```
 
+```js
+function Person(name) {
+ this.name = name
+ this.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}`)
+ }
+}
+const john = new Person('John')
+john.sayHello()  // Hello, my name is John
+const sayHello = john.sayHello
+sayHello()  //Hello, my name is undefined (브라우저에서는 window.name)
+```
+
 # 화살표 함수의 this
 - 화살표 함수에서 this는 '정적'으로 결정
-- 화살표 함수는 자신이 선언된 렉시컬 환경의 this를 상속받음
-- 화살표 함수가 정의될 때  this가 무엇인지에 따라 결정되며, 실행 시점에서는 변경되지 않음
+- 화살표 함수는 자신이 선언된 렉시컬 환경의 this를 상속받음(자신을 포함하고 있는 외부 함수의 this값을 상속받음)
+- 화살표 함수가 정의될 때 this가 무엇인지에 따라 결정되며, 실행 시점에서는 변경되지 않음
+
 
 1. 화살표 함수는 자신을 포함하고 있는 외부 함수의 this값을 사용
 2. 만약 화살표 함수가 전역 범위에서 정의된 경우, this는 전역 객체를 가리킴
@@ -42,6 +56,18 @@ const obj = {
 obj.method()  // {method: ƒ}
 const globalArrowFunc =() => console.log(this)
 globalArrowFunc()  //전역 객체   Window {0: Window, 1: Window, 2: Window, window: Window, self: Window, document: document, name: '', location: Location, …}
+```
+```js
+function Person(name) {
+ this.name = name
+ this.sayHello = () => {
+  console.log(`Hello, my name is ${this.name})
+ }
+}
+const john = new Person("John")
+john.sayHello() // Hello, my name is John
+const sayHello = john.sayHello
+sayHello()  //Hello, my name is John
 ```
 
 ## 결론
