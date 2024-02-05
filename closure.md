@@ -215,19 +215,125 @@ counter.decrement()  // 0
   - 이로 인해 해당 변수는 클로저가 살이 있는 동안 가비지 컬렉션의 대상이 되지 않음
   - 클로저가 큰 데이터 구조를 참조하고 있거나 클로저 자체가 많이 생성되에 장시간 유지되는 경우, 불필요하게 메모리를 많이 사용할 수 있음
   - 클로저 사용 후에는 더이상 필요하지 않은 데이터에 대한 참조를 히제하는 것이 좋음
+
+```js
+// 클로저가 큰 데이터 구조를 참조할 경우, 해당 데이터가 메모리에서 해제되지 않아 메모리 누수가 발생할 수 있음
+function createLargeDataClosure() {
+  const largeData = new Array(1000000).fill('X')
+  return function() {
+      console.log(largeData[0])
+  }
+}
+const closure = createLargeDateClosure() //largeData는 closure가 존재하는 함 메모리에서 해제되지 않음
+//===============================================
+//메모리 누수 방지 코드
+function createLargeDataClosure() {
+  let largeData = new Array(1000000).fill('X')
+  return function() {
+    console.log(largeData[0])
+    //필요한 작업 완료 후 largeData 참조 해제
+    largeData = null
+  }
+}
+const closure = createLargeDateClosure()
+closure()
+```
 2. 성능 고려
   - 클로저를 과도하게 사용하면 성능에 부정적인 영향을 미칠 수 있음
   - 특히, 루프 내에서 클로저를 생성하는 경우, 각 반복마다 새로운 클로저가 생성되어 메모리 사용량이 증가, 성능이 저하될 수 있음
   - 필요한 경우에만 클로저를 사용하고, 가능하다면 클로저 생성을 최소화
+
+```js
+//루프 내에서 클로저를 생성하면 성능 저하가 발생할 수 있음. 각 반복마다 새로운 함수 인스턴스가 생성되기 때문
+for(var i=0; i<10; i++) {
+  //각 반복마다 새로운 클로저 생성
+  (function(j) {
+    setTimeout(function() {
+      console.log(j)    //j는 해당 클로저에 의해 '캡쳐'됨
+    }, 1000)
+  })(i)
+}
+
+//성능에 민감한 상황에서는 클로저 대신 다른 방법을 고려
+
+```
 3. 디버깅의 어려움
   - 클로저는 외부 스코프 변수에 접근 할 수 있지만, 디버거가 클로저 내부의 실행 컨텍스트에 접근하는 것이 어려울 수 있음
   - 클로저가 참조하는 외부 변수의 값이 예상과 다를 때 원인을 찾기 어려울 수 있음
+
+```js
+function outer() {
+  var outerVar = 'I am from outer'
+  function inner() {
+    console.log(outerVar)
+  }
+  outerVar = 'Outer has changed'
+  return inner
+}
+const myClosure = outer()
+myClosure()    //'Outer has changed'가 출력, 예상과 다를 수 있음!!
+
+//===============================================
+//외부 변수의 값이 변경될 수 있으므로, 클로저 내부에서 사용할 외부 변수의 복사본을 만들어 사용
+function outer() {
+  let outerVar = 'I am from outer'
+  let innerVarCopy = outerVar    //외부 변수의 복사본을 생성
+  function inner() {
+    console.log(innerVarCopy)
+  }
+  outerVar = 'Outer has changed'
+  return inner
+}
+const myClosure = outer()
+myClosure()    //"I am from outer'가 출력
+```
 4. 스코프의 이해
   - 클로저는 외부 함수의 변수에 접근할 수 있는데 이는 때때로 예상치 못한 결과를 초래할 수 있음
   - 루프 변수와 같은 변화하는 외부 변수에 의존할 때 주의해야함
   - 이러한 문제를 방지하기 위해 클로저가 사용될 때 해당 변수의 최종 상태가 아니라 각 상태를 정확히 참조하도록 해야함
   - 루프 내에서 클로저를 사용할 때는 루프 변수를 클로저에 바인딩하는 방법 고려
+```js
+//루프 내 클로저 사용 시, 루프 변수의 최종 상태만을 '기억'하는 문제를 방지
+for(var i=0; i<10; i++){
+  setTimeout(function() {
+    console.log(i)  //항상 10을 출력
+  }, 1000)
+}
+//===============================================
+//루프 변수의 스코프를 정확하게 관리하기 위해 let을 사용하여 각 반복마다 별도의 스코프를 생성
+for(let i=0;i<10;i++){
+  setTimeout(function(){
+    console.log(i)    //0부터 9까지 차례대로 출력
+  }, 1000)
+}
+```
 5. this 키워드 사용
   - this의 값은 함수 호출 방식에 따라 달리지며, 클로저 내부의 this의 값은 함수 호출 방식에 따라 달라짐
   - 클로저 내부에서 this를 사용하면 예상치 못한 객체를 참조할 수 있음
   - 필요한 경우 this를 다른 변수에 할당하거나 Function.prototype.bind메소드를 사용하여 this의 값을 명시적으로 설정할 수 있음
+
+
+```js
+//클로저 내에서 this를 사용할 때는 그 값이 예상과 다를 수 있으므로 주의
+function Person() {
+  this.age = 0
+  setInterval(function growUp() {
+    //이 함수는 Person의 this를 '기억'하지 않음
+    //따라서 아래 코드는 전역 객체에 대해 작동
+    this.age++
+  }, 1000)
+}
+var p = new Person()    //예상과 다르게 p.age는 증가하지 않음
+
+//===============================================
+//this문제를 해결하기 위해 화살표 함수를 사용. 화살표 함수는 자신을 포함하고 있는 외부 함수의 this를 기억
+function Person() {
+    this.age = 0
+    setinterval(() => {
+      //화살표 함수는 Person의 this를 '기억'
+      this.agte++
+    }, 1000)
+}
+var p = new Person()    //p.age는 정상적으로 증가
+
+```
