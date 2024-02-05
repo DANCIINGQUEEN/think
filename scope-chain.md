@@ -67,7 +67,7 @@ outer()
 ### 예시 코드
 ```js
 function outerFunction() {
- let ounterVariable = 'I am outside'  //outerFunction의 지역 변수
+ let outerVariable = 'I am outside'  //outerFunction의 지역 변수
  function innerFunction() {
     //innerFunction에서는 outerFunction의 지역 변수에 접근할 수 있음
     console.log(outerVariable)
