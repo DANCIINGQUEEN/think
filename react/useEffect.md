@@ -88,15 +88,15 @@
     ```
     
     - 예시 3. 의존성 배열 없이 매 렌더링 후 실행 : 컴포넌트가 렌더링 될 때마다 실행되는 로그 기록
-      ```js
-        import React, { useEffect } from 'react'
-        function LogRender() {
-          useEffect(() => {
-            console.log('컴포넌트가 렌더링됨')
-          })  //의존성 배열이 없으므로 컴포넌트가 렌더링될 때마다 실행
-          return <div>렌더링 로그 기록 예시</div>
-        }
-      ```
+  ```js
+    import React, { useEffect } from 'react'
+    function LogRender() {
+      useEffect(() => {
+        console.log('컴포넌트가 렌더링됨')
+      })  //의존성 배열이 없으므로 컴포넌트가 렌더링될 때마다 실행
+      return <div>렌더링 로그 기록 예시</div>
+    }
+  ```
 
 ## Cleanup 함수 제공
 -  useEffect 내에서 반환(return)하는 함수는 컴포넌트가 언마운트될 때 실행됨
