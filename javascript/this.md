@@ -75,3 +75,23 @@ sayHello()  //Hello, my name is John
 - function 함수가 다양한 상황에서 유연하게 this를 다룰 수 있도록 함
 - 화살표 함수는 렉시컬 스코프를 기반으로 this를 예측 가능하기 만듦
 - 따라서 화살표 함수는 메소드나 생성자 함수보다는 콜백 함수나 클로저 내부 함수로 사용될 때 더 적함합수도..?
+
+
+```html
+<button id='button'>click me</button>
+```
+```js
+//function키워드 사용
+document.getElementById('button').addEventListener('click', function(){
+ console.log(this) //이 경우 this는 button요소를 가리킴
+}
+
+//화살표 함수 사용
+document.getElementById('button').addEventListener('click', ()=>{
+ console.log(this)  // 화살표 함수 외부의 this를 상속받음
+}
+```
+- 화살표 함수는 이벤트 핸들러 내에서 this를 핵당 요소로 바인딩하는 대신, 외부 스코프의 this를 사용함
+- 따라서 화살표 함수는 이벤트 핸들러에서 DOM 요소를 직접 참조하기 위한 this를 사용할 때 주의해야함
+- 반면, function 키워드 함수는 이벤트 리스너가 추가된 요소를 this로 자동 바인딩 함
+- 따라서 이벤트 대상 요소에 접근하려면 function키워드 함수가 더 적합할수도..
