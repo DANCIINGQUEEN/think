@@ -72,9 +72,9 @@
     const signal = controller.signal;
     
     fetch('https://api.example.com/data', { signal })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+       .then(response => response.json())
+       .then(data => console.log(data))
+       .catch(error => console.error('Error:', error));
     
     // 요청 취소
     controller.abort();
@@ -85,14 +85,14 @@
     const source = CancelToken.source();
     
     axios.get('https://api.example.com/data', {
-    cancelToken: source.token
-    }).then(response => console.log(response.data))
-    .catch(error => {
-      if (axios.isCancel(error)) {
-        console.log('Request canceled', error.message);
-      } else {
-        // 처리 오류
-      }
+       cancelToken: source.token
+       }).then(response => console.log(response.data))
+       .catch(error => {
+         if (axios.isCancel(error)) {
+           console.log('Request canceled', error.message);
+         } else {
+           // 처리 오류
+         }
     });
     
     // 요청 취소
