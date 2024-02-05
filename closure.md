@@ -301,7 +301,7 @@ for(var i=0; i<10; i++){
 }
 //===============================================
 //루프 변수의 스코프를 정확하게 관리하기 위해 let을 사용하여 각 반복마다 별도의 스코프를 생성
-for(let i=0;i<10;i++){
+for(let i=0; i<10; i++){
   setTimeout(function(){
     console.log(i)    //0부터 9까지 차례대로 출력
   }, 1000)
@@ -331,7 +331,7 @@ function Person() {
     this.age = 0
     setinterval(() => {
       //화살표 함수는 Person의 this를 '기억'
-      this.agte++
+      this.age++
     }, 1000)
 }
 var p = new Person()    //p.age는 정상적으로 증가
