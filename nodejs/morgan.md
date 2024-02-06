@@ -3,7 +3,7 @@ Express 프레임워크용 로킹 미들웨어
 
 - `morgan`을 사용하면 HTTP 요청에 대한 로그를 자동으로 생성하고, 이를 콘솔이나 파일 등에 기록할 수 있음
 
-- `app.use(logger("dev"))` 코드에서 `logger`는 `morgan` 모듈의 인스턴스를 의미.
+- `app.use(logger("dev"))` 코드에서 `logger`는 `morgan` 모듈의 인스턴스를 의미
 - `dev`는 `morgan`에 의해 사전 정의된 로깅 포맷 중 하나를 나타냄
   - 요청된 HTTP 메소드
   - URL
