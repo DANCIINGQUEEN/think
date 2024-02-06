@@ -6,7 +6,7 @@ const multiKill = (title) => {
 };
 ```
 
-개선 : else문 제거
+개선 : `else if`, `else` 제거
 
 ```js
 const multiKill = (title) => {
@@ -15,3 +15,18 @@ const multiKill = (title) => {
     return "rgba(0,0,0,0.02)";
 };
 ```
+
+=========================================================
+
+```js
+const date = playlist[1].date
+const id = playlist[1]._id
+```
+개선 : 구조 분해 할당(destructuring)
+
+```js
+const { date, _id: id } = playlist[1]
+```
+
+
+=========================================================
