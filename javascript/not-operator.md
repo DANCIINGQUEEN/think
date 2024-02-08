@@ -18,6 +18,8 @@ let bitwiseNot1 = ~num1 // -6
 
 let num2 = 3
 let bitwiseNot2 = ~num2 // -4
+//num2    ==> 00000011 (3)
+//~num2   ==> 11111100 (-4)
 
 let zero = 0
 let bitwiseNot3 = ~zero // -1
