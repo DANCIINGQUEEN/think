@@ -88,3 +88,125 @@ const poem = generatePoem(4); // 4줄짜리 시 생성
 console.log(poem);
 
 ```
+
+
+``js
+// A JavaScript Poem: The Code of Emotions
+
+let feelings = ['hope', 'sorrow', 'joy', 'peace'];
+
+function experience(life, emotions) {
+    try {
+        throw life;
+    } catch (challenge) {
+        console.log("Facing", challenge, "with", emotions.pop());
+    } finally {
+        if (emotions.length > 0) {
+            experience("new day", emotions);
+        } else {
+            console.log("Embracing the journey.");
+        }
+    }
+}
+
+experience("life's journey", feelings);
+
+```
+
+
+```c
+#include <stdio.h>
+
+// A C Language Poem: The Echo of Time
+
+void echo(char *time, int depth) {
+    if (depth > 0) {
+        printf("%s, echoes %d times\n", time, depth);
+        echo(time, depth - 1);
+    } else {
+        printf("In the end, everything fades into silence...\n");
+    }
+}
+
+int main() {
+    echo("The sound of the universe", 5);
+    return 0;
+}
+
+```
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+// A C Language Poem: The Journey of Memory
+
+int main() {
+    char memories[5][30] = {"Forgotten dreams in the wind", 
+                            "Echoes of the silent whispers", 
+                            "Shadows under the moonlight",
+                            "Fleeting moments of joy", 
+                            "Eternal peace in the stars"};
+
+    int years[5] = {2001, 2005, 2010, 2015, 2020};
+    int current_year = 2023;
+
+    for (int i = 0; i < 5; i++) {
+        printf("%d: %s\n", years[i], memories[i]);
+
+        if (years[i] < current_year) {
+            printf(" - A memory from %d years ago\n", current_year - years[i]);
+        } else {
+            printf(" - A moment still to come\n");
+        }
+    }
+
+    return 0;
+}
+
+```
+```js
+// A JavaScript Poem: The Journey of Exploration
+
+// Define a graph representing the journey
+const graph = {
+    start: ["a", "b"],
+    a: ["c", "d"],
+    b: ["e", "f"],
+    c: ["g"],
+    d: ["h"],
+    e: ["i"],
+    f: ["j"],
+    g: [],
+    h: [],
+    i: [],
+    j: [],
+};
+
+// Perform Depth-First Search (DFS)
+function explore(node) {
+    console.log("Exploring node:", node);
+
+    // Base case: If the node has no children, return
+    if (graph[node].length === 0) {
+        return;
+    }
+
+    // Recursively explore the children
+    for (const child of graph[node]) {
+        explore(child);
+    }
+}
+
+// Start the exploration from the "start" node
+console.log("The journey begins...");
+explore("start");
+console.log("The journey ends.");
+
+// Reflecting on the journey
+console.log("In the depths of exploration,");
+console.log("We find new paths to tread.");
+console.log("Through the twists and turns of life,");
+console.log("Adventure lies ahead.");
+
+```
