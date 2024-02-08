@@ -25,6 +25,11 @@ let bitwiseNot3 = ~zero // -1
 let value = 10
 let mask = 2
 let result = value & ~mask // 8
+// value   ==> 00001010
+// mask    ==> 00000010
+//~mask    ==> 11111101
+//value & ~mask   => 00001010 (10) & 11111101 (-3) = 00001000 (8)
+
 
 let floatNum = 3.7
 let integerPart = ~~floatNum // 3
