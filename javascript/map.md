@@ -23,15 +23,15 @@ let myMap = new Map()
 
 myMap.set('name', 'Park')
 myMap.set('age', 29)
-myMap.set({ id : 1 }, 'User ID 1')
+myMap.set('id', 'User ID 1')
 
-console.log(myMap.get('name'))
-console.log(myMap.size)
+console.log(myMap.get('name'))   //Park
+console.log(myMap.size)   //3
 
 myMap.delete('age')
-console.log(myMap.has('age'))
+console.log(myMap.has('age'))   //false
 
 for (let [key, value] of myMap) {
-  console.log(`${key} => ${value}`)
+  console.log(`${key} => ${value}`)    //id => User ID 1
 }
 ```
