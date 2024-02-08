@@ -29,7 +29,7 @@ obj.show()
 3. Explicit Binding 명시적 바인딩
    call, apply, bind메소드를 사용하여 함수를 호출할 때 this를 명시적으로 바인딩 할 수 있음
 ```js
-functinon show() {
+function show() {
   console.log(this.value)
 }
 const obj = { value : 42 }
