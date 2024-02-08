@@ -24,7 +24,7 @@
         return {
           ...state,
           ...action.payload,
-        },
+        }
       default :
         return state
     }
