@@ -2,6 +2,30 @@
 - 콜백 함수가 충접되어 코드의 가독성과 유지보수성이 떨어지는 현상
 - 주로 비동기 작업을 처리할 때 발생
 
+
+## Callback function
+- 다른 함수에 인자로 전달되는 함수
+- 호출되는 함수와 콜백 함수 2가지 함수 간의 상호작용을 통해 비동기적인 작업을 수행하거나 이벤트 처리, 코드를 재사용하는 등의 목적으로 사용
+- 다른 함수가 실행된 후에 실행되도록 예약되어 사용됨
+- 예 : 비동기적인 작업(네트워크 요청, 파일 읽기 등)이 끝나면 그 결과를 처리하기 위해 콜백 함수를 등록
+  ```js
+  function fetchDataFromServer(callback) {
+    setTimeout(function () {
+      const data = { name : 'Park' , age : 29 }
+      callback(data)  //callback 함수 호출
+    }, 1000)
+  }
+
+  function processData(data) {
+    console.log('데이터 처리 완료 : ', data)
+  }
+  //fetchDataFromServer 함수의 인자로 processData 함수를 콜백으로 전달
+  fetchdataFromServer(processData)
+  ```
+  - 위 코드에서 `fetchDataFromServer` 함수는 1초 후에 서버로부터 데이터를 가져옴
+  - `processData` 함수가 콜백으로 전달되어, 데이터가 준비되면 `processData` 함수가 호출됨
+ 
+
 ```js
 //Callback Hell by file system
 const fs = require('fs')
