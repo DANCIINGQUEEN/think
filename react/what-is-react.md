@@ -43,7 +43,6 @@ function List({ items }) {
   return (
     <ul>
       {items.map((item, index) => (
-        // 각 아이템을 ListItem 컴포넌트로 변환합니다.
         <ListItem key={index} value={item} />
       ))}
     </ul>
