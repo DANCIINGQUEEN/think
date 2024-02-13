@@ -10,7 +10,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-//가상 DOM을 사용하여 UI를 업데이트하는 컴포넌트
 function App() {
   const [count, setCount] = useState(0)
   const handleClick = () => {
@@ -19,7 +18,6 @@ function App() {
   return (
     <div>
       <h1>카운터: {count}</h1>
-      {/* 버튼 클릭 시 handleClick 함수를 호출합니다. */}
       <button onClick={handleClick}>증가</button>
     </div>
   )
