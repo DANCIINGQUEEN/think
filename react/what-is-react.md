@@ -169,7 +169,6 @@ const App = () => {
   return (
     <div>
       <h1>버튼 예시</h1>
-      {/* 버튼 컴포넌트를 사용하여 버튼을 렌더링합니다. */}
       <Button onClick={handleClick}>클릭하세요!</Button>
     </div>
   )
