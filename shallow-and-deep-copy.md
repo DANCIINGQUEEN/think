@@ -37,7 +37,7 @@ console.log(deepCopy.b === original.b)  // false, 내부 객체가 서로 다른
 ```js
 //재귀를 이용한 객체의 깊은 복사
 function deepCopy(obj){
-  if(typeop obj !== 'object' || obj === null) {
+  if(typeof obj !== 'object' || obj === null) {
     return obj
   }
   let copy = Array.isArray(obj) ? [] : {}
