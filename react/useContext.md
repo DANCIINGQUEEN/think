@@ -38,3 +38,132 @@ function MyComponent() {
 - 성능 최적화
   - `useContext`를 사용하면 필요한 컴포넌트만 컨텍스트의 변화를 감지하고 업데이트될 수 있음
   - 불필요한 렌더링을 방지하고 애플리케이션의 성능을 최적화함
+
+
+## 간단한 로그인
+1. AuthContext 생성
+   - 인증 상태(사용자가 로그인했는지 여부)와 로그인 및 로그아웃 함수를 저장할 `AuthContext`를 생성
+```js
+import React, { createContext, useContext, useState } from 'react'
+
+const AuthContext = createContext()
+
+export function useAuth() {
+  return useContext(AuthContext)
+}
+
+export const AuthProvider = ({children}) => {
+  const [user, setUser] = useState(null)
+
+  const login = (username, password) => {
+    setUser({ id : '1', username })
+  }
+  const logout = () => {
+    setUser(null)
+  }
+
+  const value = {
+    user,
+    login, 
+    logout
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+```
+
+2. AuthProvider로 앱 감싸기
+   - 앱의 최상위 컴포넌트에서 `AuthProvider`를 사용하여 앱 전체에 `AuthContext`를 제공
+```js
+import React from 'react'
+import { AuthProvider } from './AuthContext'
+import Login from './Login'
+import UserProfile from './UserProfile'
+
+function App() {
+  return (
+    <AuthProvider>
+      <div>
+        <h1>My App</h1>
+        <Login/>
+        <UserProfile/>
+      </div>
+    </AuthProvider>
+  )
+}
+export default App
+```
+
+
+3. 로그인 컴포넌트
+- 사용자로부터 사용자 이름을 입력받아 로그인하는 `Login` 컴포넌트
+```js
+import React, { useState } from 'react'
+import { useAuth } from './AuthContext'
+
+function Login() {
+  const [username, setUsername] = useState('')
+  const { login } = useAuth()
+
+  const handleSubmit = (e) => {
+    e.preventdefault()
+    login(username, 'password')
+  }
+  return (
+     <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  )
+}
+export default Login
+```
+
+4. 사용자 프로필 컴포넌트
+- 로그인된 사용자의 정보를 표시하는 `UserProfile` 컴포넌트
+```js
+import React from 'react'
+import { useAuth } from './AuthContext'
+
+function UserProfile() {
+  const { user, logout } = useAuth()
+  return (
+    {user ? (
+        <div>
+          <p>Welcome, {user.username}!</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      ) : (
+        <p>Please log in.</p>
+      )}
+    </div>
+  )
+}
+export default UserProfile
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
