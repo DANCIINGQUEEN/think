@@ -8,7 +8,22 @@ const original = {a:1, b:{c:2}}
 const shallowCopy = { ...original }
 console.log(shallowCopy.b === original.b)  //true, 내부 객체가 동일한 참조를 가짐
 ```
-
+```js
+//배열의 얕은 복사
+const originalArray = [1,2,3,4]
+const shallowCopiedArray = [...originalArray]
+shallowCopiedArray.push(5)
+console.log(originalArray)  // [1,2,3,4]
+console.log(shallowCopiedArray)  // [1,2,3,4,5]
+```
+```js
+//객체의 얕은 복사
+const originalObject = {a:1, b:2}
+const shallowCopiedObject = { ...originalObject }
+shallowCopiedObject.a = 3
+console.log(originalObject)  // {a:1, b:2}
+console.log(shallowCopiedObject)  // {a:3, b:2}
+```
 
 # Deep Copy (깊은 복사)
 - 깊은 복사는 객체와 그 객체가 참조하는 모든 객체들까지 재귀적으로 복사함
@@ -18,4 +33,23 @@ console.log(shallowCopy.b === original.b)  //true, 내부 객체가 동일한 �
 const original = {a:1, b:{c:2}}
 const deepCopy = JSON.parse(JSON.stringify(original))
 console.log(deepCopy.b === original.b)  // false, 내부 객체가 서로 다른 참조를 가짐
+```
+```js
+//재귀를 이용한 객체의 깊은 복사
+function deepCopy(obj){
+  if(typeop obj !== 'object' || obj === null) {
+    return obj
+  }
+  let copy = Array.isArray(obj) ? [] : {}
+  for (let key in obj) {
+    const value = obj[key]
+    copy[key] = deepCopy(value)
+  }
+  return copy
+}
+const originalObject = {a:1, b:{c:2, d:[3,4]}}
+const deepCopiedObject = deepCopy(originalObject)
+deepCopiedObject.b.d.push(5)
+console.log(originalObject)    // {a:1, b:{c:2, d:[3,4]}}
+console.log(deepCopiedObject)  // {a:1, b:{c:2, d:[3,4,5]}}
 ```
