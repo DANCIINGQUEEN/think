@@ -112,7 +112,7 @@ let dynamicKey = 'name'
 let person = {
   [dynamicKey] : 'Park'
 }
-console.log(person.name)    //Park
+console.log(person)    //{ name: 'Park' }
 ```
 
 
