@@ -102,7 +102,7 @@ document.getElementById('myButton').addEventListener('click', function() {
 9. 블록 스코프 내 임시 배열
 ```js
 {
-  let tempArray = [1,2.3]
+  let tempArray = [1,2,3]
   console.log(tempArray)
 }
 ```
