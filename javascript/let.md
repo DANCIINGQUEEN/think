@@ -66,6 +66,7 @@ function doSomething() {
   let result = 'Some result'
   return result
 }
+console.log(doSomething())
 ```
 
 6. 스위치문 내에서의 블록 스코프 함수
