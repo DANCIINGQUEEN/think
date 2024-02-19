@@ -56,7 +56,7 @@ console.log(add(2, 4))     // 6
 6. 객체 속성 변경
 ```js
 const student = { name : 'Park'}
-strudent.name = 'Lee'
+student.name = 'Lee'
 console.log(student)     // Lee
 ```
 7.  배열 내 요소 변경
