@@ -71,16 +71,20 @@ console.log(doSomething())
 
 6. 스위치문 내에서의 블록 스코프 함수
 ```js
-switch (key) {
-  case 1: {
-    let option = 'Option 1'
-    break;
-  }
-  case 2: {
-    let option = 'Option 2'
-    break;
+function returnKey(key) {
+  switch (key) {
+    case 1: {
+      let option = "Option 1";
+      return option;
+    }
+    case 2: {
+      let option = "Option 2";
+      return option;
+    }
   }
 }
+console.log(returnKey(2));
+
 ```
 7. 모듈 스코프에서의 임시 설정
 ```js
