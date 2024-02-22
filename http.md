@@ -94,7 +94,7 @@
       method : 'POST',
       body : formData
       })
-      .then(res => res.json()
+      .then(res => res.json())
       .then(data => console.log(data))
     ```
     3. 파일 업로드
@@ -112,7 +112,7 @@
       method : 'POST',
       body : formData
       })
-      .then(res => res.json()
+      .then(res => res.json())
       .then(data => console.log(data))
     ```
 - PUT : 지정된 리소스를 업데이트
