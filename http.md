@@ -76,7 +76,7 @@
       },
       body : JSON.stringify({ message : 'Hello, World' })
       })
-      .then(res => res.json()
+      .then(res => res.json())
       .then(data => console.log(data))
     ```
     2. 폼 데이터 전송
@@ -116,6 +116,58 @@
       .then(data => console.log(data))
     ```
 - PUT : 지정된 리소스를 업데이트
+  - 예시
+    1. 리소스 업데이트
+    ```js
+    //express server
+    app.put('api/user/:id', (req,res) => {
+      const userId = req.params.id
+      const userData = req.body
+      res.json({ message : `User ${userId} updated`, updatedData : userData })
+    })
+    //client vanilla javascript
+    fetch('api/user/123', {
+      methpd : 'PUT',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({ name : 'Park', email : 'park@example.com' })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
+    2. 특정 항목의 상태 변경
+    ```js
+    //express server
+    app.put('api/task/:tastId/complete', (req,res) => {
+      const taskId = req.params.taskId
+      res.json({ message : `User ${userId} maked as complete` })
+    })
+    //client vanilla javascript
+    fetch('api/task/123/complete', {
+      methpd : 'PUT',
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
+    3. 설정 변경
+    ```js
+    //express server
+    app.put('api/settings', (req,res) => {
+      const settings = req.body
+      res.json({ message : 'Settings updated' , newSettings : settings })
+    })
+    //client vanilla javascript
+    fetch('api/settings', {
+      methpd : 'PUT',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({ theme : 'dark', notifications : 'enabled' })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
 - DELETE : 지정된 리소스 삭제
 - HEAD : GET 요청과 동일하지만, 응답 본문 없이 헤더 정보만 반환
 - OPTIONS : 대상 리소스에 대해 통신 옵션 설명
