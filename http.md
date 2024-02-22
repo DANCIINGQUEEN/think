@@ -60,6 +60,61 @@
       .then(data => console.log(data))
     ```
 - POST : 지정된 리소스에 데이터를 제출하여 처리를 요청함. 주로 데이터 생성에 사용
+  - 예시
+    1. JSON 데이터 전송
+    ```js
+    //express server
+    app.post('api/data', (req,res) => {
+      console.log(req.body)  
+      res.json({ status : 'Success', received : req.body })
+    })
+    //client vanilla javascript
+    fetch('api/data', {
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({ message : 'Hello, World' })
+      })
+      .then(res => res.json()
+      .then(data => console.log(data))
+    ```
+    2. 폼 데이터 전송
+    ```js
+    //express server
+    app.post('api/formdata', (req,res) => {
+      console.log(req.body)
+      res.json({ status : 'Success', username : req.body.username })
+    })
+    //client vanilla javascript
+    const formData = new FormData()
+    formData.append('username' : 'park')
+    formData.append('password' : '4044')
+    fetch('api/formData', {
+      method : 'POST',
+      body : formData
+      })
+      .then(res => res.json()
+      .then(data => console.log(data))
+    ```
+    3. 파일 업로드
+    ```js
+    //express server
+    app.post('api/upload', upload.single('file'), (req,res) => {
+      console.log(req.file)
+      res.json({ status : 'Success', filename : req.file.originalname })
+    })
+    //client vanilla javascript
+    const fileInput = document.querySelector('input[type="file"])
+    const formData = new FormData()
+    formData.append('file', fileInput.files[0])
+    fetch('api/data', {
+      method : 'POST',
+      body : formData
+      })
+      .then(res => res.json()
+      .then(data => console.log(data))
+    ```
 - PUT : 지정된 리소스를 업데이트
 - DELETE : 지정된 리소스 삭제
 - HEAD : GET 요청과 동일하지만, 응답 본문 없이 헤더 정보만 반환
