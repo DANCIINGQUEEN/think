@@ -32,7 +32,7 @@
 
     //client vanilla javascript
     fetch('/api/data')
-      .then(res => res.json(){
+      .then(res => res.json())
       .then(data => console.log(data))
     ```
     2. 쿼리 파라미터를 포함한 요청
@@ -44,7 +44,7 @@
     })
     //client vanilla javascript
     fetch('api/search?query=example')
-      .then(res => res.json()
+      .then(res => res.json())
       .then(data => console.log(data))
     ```
     3. 경로 파라미터를 포함한 요청
@@ -56,7 +56,7 @@
     })
     //client vanilla javascript
     fetch('api/profile/201')
-      .then(res => res.json()
+      .then(res => res.json())
       .then(data => console.log(data))
     ```
 - POST : 지정된 리소스에 데이터를 제출하여 처리를 요청함. 주로 데이터 생성에 사용
