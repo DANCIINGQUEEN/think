@@ -81,7 +81,7 @@
   - 415 Unsupported Media Type
   - 416 Range Not Satisfiable
   - 417 expectation Failed
-  - 418 I'm a teapot : 1998년 만우절을 맞이하여 정의된 코드. 서버가 주전자이며, 클라이언트가 커피를 끓이라는 요청을 보냈지만, 해당 장치는 주전자이므로 해당 작ㅇ버을 수행할 수 없음을 의미
+  - 418 I'm a teapot : 1998년 만우절을 맞이하여 정의된 코드. 서버가 주전자이며, 클라이언트가 커피를 끓이라는 요청을 보냈지만, 해당 장치는 주전자이므로 해당 작업을 수행할 수 없음을 의미
   - 421 Misdirected Request
   - 422 Unprocessable Content
   - 423 Locked
