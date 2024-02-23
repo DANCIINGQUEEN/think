@@ -215,9 +215,70 @@
       .then(res => res.json())
       .then(data => console.log(data))
     ```
+- PATCH : 리소스의 부분적인 수정 수행
+  - 예시
+    1. 사용자 정보 부분 업데이트
+    ```js
+    // express server
+    app.patch('/api/user/:id', (req,res) => {
+      const userId = req.params.id
+      const updates = req.body
+      res.json({ message : `User ${userId} updated`, updatedData : updates })
+    })
+
+    // client vanilla javascript
+    fetch('/api/user/1234', {
+      method : 'PATCH',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({ email : 'park@example.com' })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
+    2. 특정 게시글의 특정 필드 수정
+    ```js
+    // express server
+    app.patch('/api/post/:postId', (req,res) => {
+      const postId = req.params.postId
+      const updates = req.body
+      res.json({ message : `Post ${userId} updated`, updatedData : updates })
+    })
+
+    // client vanilla javascript
+    fetch('/api/post/1234', {
+      method : 'PATCH',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({ title : 'Updateed Post Title' })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
+    3. 사용자 설정의 특정 부분 변경
+    ```js
+    // express server
+    app.patch('/api/user/:id/settings', (req,res) => {
+      const userId = req.params.id
+      const settingsUpdate = req.body
+      res.json({ message : `Setting for user ${userId} updated`, newSettings : settingsUpdate })
+    })
+
+    // client vanilla javascript
+    fetch('/api/user/1234/settings', {
+      method : 'PATCH',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({ notifications : false })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
 - HEAD : GET 요청과 동일하지만, 응답 본문 없이 헤더 정보만 반환
 - OPTIONS : 대상 리소스에 대해 통신 옵션 설명
-- PATCH : 리소스의 부분적인 수정 수행
 - CONNECT : 프록시 기능을 요청할 때 사용되며, 요청한 리소스로의 터널을 설정하기 위해 사용
 - TRACE : 클라이언트의 요청을 서버로 보내고, 경로를 따라 중간에 위치한 서버들이 수행하는 변경 없이 그대로 다시 클라이언트에게 되돌려 보내는 루프백 테스트에 사용
 
