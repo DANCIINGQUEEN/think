@@ -170,51 +170,51 @@
     ```
 - DELETE : 지정된 리소스 삭제
   - 예시
-  1. 특정 사용자 삭제
-  ```js
-  // express server
-  app.delete('/api/user/:id', (req,res) => {
-    const userId = req.params.id
-    res.json({ message : `User ${userId} deleted` })
-  })
-
-  // client vanilla javascript
-  fetch('/api/user/123', {
-    method : 'DELETE'
+    1. 특정 사용자 삭제
+    ```js
+    // express server
+    app.delete('/api/user/:id', (req,res) => {
+      const userId = req.params.id
+      res.json({ message : `User ${userId} deleted` })
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-  ```
-  2. 특정 게시글 삭제
-  ```js
-  // express server
-  app.delete('/api/post/:postId', (req,res) => {
-    const postId = req.params.postId
-    res.json({ message : `Post ${postId} deleted` })
-  })
-
-  // client vanilla javascript
-  fetch('/api/post/123', {
-    method : 'DELETE'
+  
+    // client vanilla javascript
+    fetch('/api/user/123', {
+      method : 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
+    2. 특정 게시글 삭제
+    ```js
+    // express server
+    app.delete('/api/post/:postId', (req,res) => {
+      const postId = req.params.postId
+      res.json({ message : `Post ${postId} deleted` })
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-  ```
-  3. 사용자 설정 초기화
-  ```js
-  // express server
-  app.delete('/api/user/:id/setting', (req,res) => {
-    const userId = req.params.id
-    res.json({ message : `settings for user ${userId} reset` })
-  })
-
-  // client vanilla javascript
-  fetch('/api/user/123/settings', {
-    method : 'DELETE'
+  
+    // client vanilla javascript
+    fetch('/api/post/123', {
+      method : 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
+    3. 사용자 설정 초기화
+    ```js
+    // express server
+    app.delete('/api/user/:id/setting', (req,res) => {
+      const userId = req.params.id
+      res.json({ message : `settings for user ${userId} reset` })
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-  ```
+  
+    // client vanilla javascript
+    fetch('/api/user/123/settings', {
+      method : 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    ```
 - HEAD : GET 요청과 동일하지만, 응답 본문 없이 헤더 정보만 반환
 - OPTIONS : 대상 리소스에 대해 통신 옵션 설명
 - PATCH : 리소스의 부분적인 수정 수행
