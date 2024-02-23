@@ -324,6 +324,53 @@
     })
     ```
 - OPTIONS : 대상 리소스에 대해 통신 옵션 설명
+  - 예시
+    1. 리소스에 대한 허용되는 메서드 확인
+    ```js
+    //express server
+    app.options('/api/resource', (req,res) => {
+      res.setHeader('Allow', 'GET, POST, OPTIONS')
+      res.end()
+    })
+
+    // client vanilla javascript
+    fetch('/api/resource', { method : 'OPTIONS' })
+      .then(res => {
+        console.log('Allowed Methods : ', res.header.get('Allow'))
+    })
+    ```
+    2. CORS 사전 요청 처리
+    ```js
+    //express server
+    app.options('/api/cors-enabled-resource', (req,res) => {
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      res.setHeader('Acess-Control-Allow-Headers', 'Content-Type')
+      res.end()
+    })
+
+    // client vanilla javascript
+    fetch('/api/cors-enabled-resource', { method : 'OPTIONS' })
+      .then(res => {
+        console.log('CORS Allowed Methods : ', res.header.get('Access-Control-Allow-Methods'))
+    })
+    ```
+    3. 특정 리소스에 대한 헤더 정보 확인
+    ```js
+    //express server
+    app.options('/api/specific-resource', (req,res) => {
+      res.setHeader('Access-Control-Allow-Origin', 'https://example.com')
+      res.setHeader('Access-Control-Allow-Methods', 'GET, PUT')
+      res.setHeader('Acess-Control-Max-Age', '86400')    //24 Hours
+      res.end()
+    })
+
+    // client vanilla javascript
+    fetch('/api/specific-resource', { method : 'OPTIONS' })
+      .then(res => {
+        console.log('Access-Control-Max-Age: ', res.header.get('Access-Control-Max-Age'))
+    })
+    ```
 - CONNECT : 프록시 기능을 요청할 때 사용되며, 요청한 리소스로의 터널을 설정하기 위해 사용
 - TRACE : 클라이언트의 요청을 서버로 보내고, 경로를 따라 중간에 위치한 서버들이 수행하는 변경 없이 그대로 다시 클라이언트에게 되돌려 보내는 루프백 테스트에 사용
 
