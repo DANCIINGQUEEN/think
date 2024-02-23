@@ -277,7 +277,52 @@
       .then(res => res.json())
       .then(data => console.log(data))
     ```
-- HEAD : GET 요청과 동일하지만, 응답 본문 없이 헤더 정보만 반환
+- HEAD : GET 요청과 동일하지만, 응답 본문 없이 헤더 정보만 반환. 리소스의 메타데이터(예 : 콘텐츠 타입, 크기 등)을 검색할 때 유용
+  - 예시
+    1. 리소스의 메타데이터 조회
+    ```js
+    // express server
+    app.head('/api/resource', (req,res) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.setHeader('Content-Length', '12345')
+      res.end()
+    })
+
+    //client vanilla javascript
+    fetch('/api/resource', { method : 'HEAD' })
+    .then(res => {
+      console.log('Content-Type', res.header.get('Content-Type'))
+      console.log('Content-Type', res.header.get('Content-Length'))
+    })
+    ```
+    2. 웹 페이지의 최신 수정 시간 확인
+    ```js
+    // express server
+    app.head('/page.html', (req,res) => {
+      res.setHeader('Last-Modified', 'Fri, 23 Feb 2023 14:41:00 GMT')
+      res.end()
+    })
+
+    //client vanilla javascript
+    fetch('/page.html', { method : 'HEAD' })
+    .then(res => {
+      console.log('Last-Modified', res.header.get('Last-Modified'))
+    })
+    ```
+    3. API 버전 정보 확인
+    ```js
+    // express server
+    app.head('/api/version', (req,res) => {
+      res.setHeader('X-API-Version', '1.1.1')
+      res.end()
+    })
+
+    //client vanilla javascript
+    fetch('/api/version', { method : 'HEAD' })
+    .then(res => {
+      console.log('X-API-Version', res.header.get('X-API-Version'))
+    })
+    ```
 - OPTIONS : 대상 리소스에 대해 통신 옵션 설명
 - CONNECT : 프록시 기능을 요청할 때 사용되며, 요청한 리소스로의 터널을 설정하기 위해 사용
 - TRACE : 클라이언트의 요청을 서버로 보내고, 경로를 따라 중간에 위치한 서버들이 수행하는 변경 없이 그대로 다시 클라이언트에게 되돌려 보내는 루프백 테스트에 사용
